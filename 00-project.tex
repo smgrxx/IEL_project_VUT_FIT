@@ -1,0 +1,41 @@
+%%%%% Projekt z předmětu IEL %%%% 
+%% Autor: Yelyzaveta Ovsiannikova
+
+\documentclass[]{fitiel} % dokumenty v češtině, implicitní
+\usepackage{siunitx}
+\usepackage{subcaption}
+\usepackage{amsmath}
+\newcommand{\R}[1]{R\textsubscript{#1}}
+\newcommand{\Uu}[1]{U\textsubscript{#1}}
+\newcommand{\I}[1]{I\textsubscript{#1}}
+\newcommand{\Gg}[1]{G\textsubscript{#1}}
+\newcommand{\Cc}[1]{C\textsubscript{#1}}
+\newcommand{\Ll}[1]{L\textsubscript{#1}}
+\newcommand{\Z}[1]{Z\textsubscript{#1}}
+% implicitní cesta k obrázkům
+\graphicspath{{fig/}}
+
+% hlavička 
+% příkaz logo - vkládá logo fakulty dle zvoleného jazyka
+\title{\logo\\IEL -- protokol k projektu}
+\author{Yelyzaveta Ovsiannikova \\ xovsia00}
+\date{\today} % today - dnešní datum
+
+\begin{document}
+	\maketitle
+	
+	\tableofcontents
+	
+	\newpage
+
+	%% vložení jednotlivých příkladů
+	\input{01-pr1.tex} \newpage
+	\input{02-pr2.tex} \newpage
+	\input{03-pr3.tex} \newpage
+	\input{04-pr4.tex} \newpage
+	\input{05-pr5.tex} \newpage
+	
+	%% vložení tabulky s přehledem výsledků
+	\input{06-tab.tex}
+	
+\end{document}
