@@ -1,0 +1,283 @@
+\section{Příklad 1}
+\prvniZadani {A}
+
+\subsection{Vypočet R$_{ekv}$:}
+\begin{figure}[H]
+	Sečtení $U_{1}$ a $U_{2}$ - sériové 
+	
+	  \centering
+	  \begin{circuitikz}
+	  \draw (0,0)to[dcvsource,v^<=U](0,4)
+		--(0,4)to[R, l^=R{1}](2,4)
+		--(2,5)
+		(2,5)to[R,l^=R{2}](4,5)--
+		(4,4)to[R,l^=R{5}](4,2)
+		(4,2)to[R,l^=R{4}](2,2)--
+		(2,4)to[R,l^=R{3}](4,4)
+		(4,4)to[R,l^=R{6}](6,4)
+		(6,4)to[R,l^=R{8}](6,2)
+		(6,2)to[R,l^=R{7}](4,2)
+		(6,2)--(6,0)--(0,0)
+		(2,4)node[circ]{ }
+		(4,4)node[circ]{ }
+		(4,2)node[circ]{ }
+		(6,2)node[circ]{ };
+	  \end{circuitikz}
+\end{figure}
+
+	Zjednodušení rezistoru: $R_{2}$ a $R_{3}$ na $R_{2,3}$; $R_{6}$ a $R_{8}$ na $R_{6,8}:\\$
+	\newline
+	$R_{2,3}=\dfrac{R_{2}\cdot R_{3}}{R_{2}+R_{3}}\\$
+    \newline
+	$R_{6,8} = R_{6} + R_{8}$
+
+ \begin{figure}[H]	
+	\centering
+	\begin{circuitikz}
+		\draw (0,0)to[dcvsource,v^<=U](0,3)
+		--(0,3) to[R, l^=R{1}](2,3)
+		(4,4)to[R,l^=R{5}](4,2)
+		(4,2)to[R,l^=R{4}](2,2)--
+		(2,4)to[R,l^=R{23}](4,4)
+		(4,4) to[R,l^=R{68}](6,4)--
+		(6,2) to[R,l^=R{7}](4,2)
+		(6,2)--(6,0)--(0,0)
+		(2,3)node[circ]{ }
+		(4,4)node[circ]{ }
+		(4,2)node[circ]{ }
+		(6,2)node[circ]{ };
+	\end{circuitikz}
+  	\end{figure}
+Transformace trojůhelník --> hvězda.
+\newline
+\newline
+$\R{A} = \frac{\R{2,3}\cdot\R{4}}{\R{2,3} + \R{4} + \R{5}} \\$
+\newline
+$\R{B} = \frac{\R{2,3}\cdot\R{5}}{\R{2,3} + \R{4} + \R{5}}\\$
+\newline
+$\R{C} = \frac{\R{4}\cdot\R{5}}{\R{2,3} + \R{4} + \R{5}}$
+
+
+  \begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+	  \draw (0,0)to[dcvsource,v^<=U](0,3)
+	--(0,3)to[R,l^=R{1}](2,3)
+	(4,4)to[R,l^=R{5}](4,2)
+	(4,2)to[R,l^=R{4}](2,2)--
+	(2,4)to[R,l^=R{23}](4,4)
+	(4,4)to[R,l^=R{68}](6,4)--
+	(6,2)to[R,l^=R{7}](4,2)
+	(6,2)--(6,0)--(0,0)
+	(2,3)node[circ]{ }
+	(4,4)node[circ]{ }
+	(4,2)node[circ]{ }
+	(6,2)node[circ]{ };
+	\end{circuitikz}
+ 
+	\begin{circuitikz}
+	  \draw (0,0) to[dcvsource, v^<=U] (0,3)
+	--(0,3)to[R,l^=R{1}](2,3)
+	(2,3)to[R,l^=R{A}](4,3)--
+	(4,2)to[R,l^=R{C}](6,2)
+	(4,3)--(4,4)
+	(6,2)to[R,l^=R{7}](8,2)
+	(4,4)to[R,l^=R{B}](6,4)
+	(6,4)to[R,l^=R{68}](8,4)	
+	--(8,0)--(0,0)
+	(4,3)node[circ]{ }
+	(8,2)node[circ]{ };
+	\end{circuitikz} 
+  \end{figure}
+
+  Zjednodušení rezistoru:$R_{1}$ a $R_{A}$ na $R_{1,A}$; $R_{B}$ a $R_{6,8}$ na $R_{6,8,B}$; $R_{C}$ a $R_{7}$ na $R_{7,C}$:
+\newline
+  $R_{1,A}=R_{A}+R_{1}\\$
+\newline
+  $R_{6,8,B}=R_{B}+R_{6,8}\\$
+\newline
+  $R_{7,C}=R_{C}+R_{7}$
+	 \begin{figure}[H]
+        \centering
+		\begin{circuitikz}
+			\draw (0,0)to[dcvsource,v^<=U](0,3)
+			--(0,3)to[R,l^=R{1A}](2,3)--
+			(2,4)to[R,l^=R{68B}](4,4)--
+			(4,0)--(0,0)
+			(2,3)--(2,2)	  
+			(2,2)to[R,l^=R{7C}](4,2) 
+			(4,2)node[circ]{ }
+			(2,3)node[circ]{ };
+			\end{circuitikz}
+		\end{figure}
+
+Zjednodušení rezistorů: $R_{6,8,B}$ a $R_{7,C}$ na $R_{6,7,8,B,C}$:
+ \newline
+
+ $R_{6,7,8,B,C}=\dfrac{R_{6,8,B}\cdot R_{7,C}}{R_{6,8,B}+R_{7,C}}$
+
+ \begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\draw (0,0)to[dcvsource,v^<=U](0,3)
+		--(0,3)to[R,l^=R{1A}](2,3)
+		(2,3)to[R,l^=R{678BC}](4,3)--
+		(4,0)--(0,0);
+		\end{circuitikz}
+	\end{figure}
+
+ Zjednodušení rezistoru: $R_{1,A}$ a $R_{6,7,8,B,C}$ na $R_{ekv}:\\$
+
+ $R_{ekv}=R_{1,A}+R_{6,7,8,B,C}\\$
+ \begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\draw (0,0) to[dcvsource, v^<=U] (0,3)
+		-- (0,3) to[R, l^=R{ekv}] (2,3) -- 
+		(2,0) -- (0,0)
+		;
+		\end{circuitikz}
+	\end{figure} 
+
+
+  \subsection {Vypočet U$_{2}$}
+  
+  S R$_{ekv}$ budeme počítat celkový proud v obvodu s pomocí Ohmova zákona:
+  $I=\frac{U}{R{ekv}}$  
+  \newline
+
+ \setlength{\parindent}{0cm}
+
+ Postupně rozkládame obvod zpět a počítame výsledné napětí $(U_{R_{r}}$) :
+ \newline
+
+$U_{R_{1,A}}$ = $I\cdot R_{1,A}$
+\newline
+
+$U_{R_{6,7,8,B,C}}$ = $I\cdot R_{6,7,8,B,C}$
+\newline
+ 
+ \begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\draw (0,0)to[dcvsource,v^<=U](0,3)
+		--(0,3)to[R,l^=R{1A}](2,3)
+		(2,3)to[R,l^=R{678BC}](4,3)--
+		(4,0)--(0,0);
+		\end{circuitikz}
+	\end{figure}
+ 
+$U_{R_{6,8,B}}$ = $U_{R_{7,C}} = U_{R_{6,7,8,B,C}}\\$
+	
+$I_{R_{6,8,B}}$ = $\dfrac{U_{R_{6,7,8,B,C}}}{R_{6,8,B}}\\$
+ 
+ \begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\draw (0,0)to[dcvsource,v^<=U](0,3)
+		--(0,3)to[R,l^=R{1A}](2,3)--
+		(2,4)to[R,l^=R{68B}](4,4)--
+		(4,0)--(0,0)
+		(2,3)--(2,2)	  
+		(2,2)to[R,l^=R{7C}](4,2) 
+		(4,2)node[circ]{ }
+		(2,3)node[circ]{ };
+		\end{circuitikz}
+	\end{figure}
+
+	$U_{R_{6,8}}$ = $I_{R_{6,8,B}} \cdot R_{6,8}\\$
+
+	$U_{R_{B}}$ = $I_{R_{6,8,B}} \cdot R_{B}\\$
+	\newline
+
+ \begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\draw (0,0)to[dcvsource,v^<=U](0,3)
+		--(0,3)to[R,l^=R{1}](2,3)
+		(2,3)to[R,l^=R{A}](4,3)--
+		(4,2)to[R,l^=R{C}](6,2)
+  		(4,3)--(4,4)
+		(6,2)to[R,l^=R{7}](8,2)
+		(4,4)to[R,l^=R{B}](6,4)
+		(6,4)to[R,l^=R{68}](8,4)	
+		--(8,0)--(0,0)
+		(4,3)node[circ]{ }
+		(8,2)node[circ]{ };
+		\end{circuitikz}
+	\end{figure}
+
+
+  $U_{R_{2,3}} + U_{R_{6,8}} - U - U_{R_{1}} = 0\\$
+  
+  $U_{R_{23}}$ = $U - U_{R_{1}} - U_{R_{6,8}}\\$
+  \newline
+  
+  \begin{figure}[H]
+	\centering
+	\begin{circuitikz}
+	\draw (0,0)to[dcvsource,v^<=U](0,3)
+	  --(0,3)to[R,l^=R{1}](2,3)
+	  (4,4)to[R,l^=R{5}](4,2)
+	  (4,2)to[R,l^=R{4}](2,2)--
+	  (2,4)to[R,l^=R{23}](4,4)
+	  (4,4)to[R,l^=R{68}](6,4)--
+	  (6,2)to[R,l^=R{7}](4,2)
+	  (6,2)--(6,0)--(0,0)
+	  (2,3)node[circ]{ }
+	  (4,4)node[circ]{ }
+	  (4,2)node[circ]{ }
+	  (6,2)node[circ]{ };
+	  \end{circuitikz}
+  \end{figure}
+
+  $U_{R_{2}} = U_{R_{3}} = U_{R_{2,3}}\\$
+  \newline 
+ 
+  $I_{R_{2}}$ = $\dfrac{U_{R_{2}}}{R_{2}}\\$
+
+ \begin{figure}[H]
+	  \centering
+	  \begin{circuitikz}
+	  \draw (0,0)to[dcvsource,v^<=U](0,4)
+	  --(0,4)to[R,l^=R{1}](2,4)
+	  --(2,5)
+	  (2,5)to[R,l^=R{2}](4,5)--
+	  (4,4)to[R,l^=R{5}](4,2)
+	  (4,2)to[R,l^=R{4}](2,2)--
+	  (2,4)to[R,l^=R{3}](4,4)
+	  (4,4)to[R,l^=R{6}](6,4)
+	  (6,4)to[R,l^=R{8}](6,2)
+	  (6,2)to[R,l^=R{7}](4,2)
+	  (6,2)--(6,0)--(0,0)
+	  (2,4)node[circ]{ }
+	  (4,4)node[circ]{ }
+	  (4,2)node[circ]{ }
+	  (6,2)node[circ]{ };
+	  \end{circuitikz}
+	\end{figure}  
+ 
+ \subsection{Dosazení}
+	\begin{align*}
+		&\R{2,3} = \frac{\R{2} \cdot \R{3}}{\R{2}+\R{3}}= \frac{650 \cdot 410}{650+410} = \SI{251.4151}{\ohm} \\ 
+		&\R{6,8} = \R{6} + \R{8} = 750 + 190 = \SI{940}{\ohm} \\ 
+		&\R{A} = \frac{\R{2,3} \cdot \R{4}}{\R{2,3}+\R{4}+\R{5}} = \frac{251.4151 \cdot 130}{251.4151+130+360} = \SI{44.0832}{\ohm} \\
+		&\R{B} = \frac{\R{2,3} \cdot \R{5}}{\R{2,3}+\R{4}+\R{5}} = \frac{251.4151 \cdot 360}{251.4151+130+360} = \SI{122.0766}{\ohm} \\
+		&\R{C} = \frac{\R{4} \cdot \R{5}}{\R{2,3}+\R{4}+\R{5}} = \frac{130 \cdot 360}{251.4151+130+360} = \SI{63.1225}{\ohm} \\
+		&\R{6,8,B} = \R{B} + \R{6,8} = 122.0766 + 940 = \SI{1062.0766}{\ohm}\\
+		&\R{1,A} = \R{A} + \R{1} = 44.0832 + 350 = \SI{394.0832}{\ohm} \\
+		&\R{7,C} = \R{C} + \R{7} = 63.1225 + 310 = \SI{373.1225}{\ohm} \\
+		&\R{6,7,8,B,C} = \frac{\R{6,8,B} \cdot \R{7,C}}{\R{6,8,B}+\R{7,C}} = \frac{1062.0766 \cdot 373.1225}{1062.0766+373.1225} = \SI{276,1183}{\ohm} \\
+	&\R{ekv}\ = \R{1,A} + \R{6,7,8,B,C} = 394.0832 + 276,1183 = \SI{670,2015}{\ohm} \\
+	&I = \frac{U}{\R{ekv}} = \frac{200}{670,2015} = \SI{0.2984}{\ampere} \\			         
+        &\Uu{R6,7,8,B,C} = I \cdot \R{6,7,8,B,C} = 0.2984 \cdot 276,1183 = \SI{82.3986}{\volt} \\
+		&\Uu{R,1,A} = I \cdot \R{1,A} = 0.2984 \cdot 394.0832 = \SI{117.5944}{\volt}\\
+		&\I{R6,8,B} = \frac{\Uu{R6,7,8,B,C}}{R6,8,B} = \frac{82.3986}{1062.0766} = \SI{0.0776}{\ampere} \\
+		&\I{R7,C} = \frac{\Uu{R6,7,8,B,C}}{R7,C} = \frac{82.3986}{373.1225} = \SI{0.2208}{\ampere} \\ 
+		&\Uu{RB} = \I{R6,8,B} \cdot \R{B} = 0.0776 \cdot 122.0766 = \SI{9.4710}{\volt}\\
+		&\Uu{R6,8} = \I{R6,8,B} \cdot \R{6,8} = 0.0776 \cdot 940 = \SI{72.9276}{\volt} \\
+		&\Uu{R1} = I \cdot \R{1} = 0.2984 \times 350 = \SI{104.4462}{\volt}\\
+		&\Uu{R2,3} = U - \Uu{R1} - \Uu{R6,8} = 200 - 104.4462 - 72.9276 = \SI{22.6262}{\volt} \\
+		&\Uu{R2} = \Uu{R3} = \Uu{R2,3} = \SI{22.6262}{\volt} \\
+		&\I{R2} = \frac{\Uu{R2}}{\R{2}} = \frac{22.6262}{650} = \SI{0.0348}{\ampere}
+	\end{align*}
