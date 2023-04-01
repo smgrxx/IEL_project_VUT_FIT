@@ -1,0 +1,87 @@
+\section{Příklad 3}
+\tretiZadani{A}
+
+\subsection{Nahrazení napětového zdroju}
+Nahradíme se napětový zdroj za proudový pro zjednodušení výpočtu vodivostí a následného dosazení do matice
+
+Pro náhradu napěťového zdroje platí: $\I{3} = \Gg{1}U$
+
+\begin{figure}[H]
+	\centering
+	   \begin{circuitikz}
+		\draw(0,0)to[ioosource,i=\I{3}](0,2)
+		(0,2)to[R,l=\Gg{1}](2,2)
+		(2,2)to[R,l=\Gg{2}](5,2)
+		(2,2)to[R,l=\Gg{3}](2,0)--(0,0)
+		(4,2)to[R,l=\Gg{4}](4,0)
+		(2,0)to[R,l=\Gg{5}](4,0)
+		(4,2)--(5,2)to[ioosource,i=\I{2}](5,0)--(4,0)
+		(4,0)--(4,-1)
+		(2,0)--(2,-1)
+		(4,-1)to[ioosource,i=\I{1}](2,-1)
+		(4,0)node[circ]{ }
+		(4,2)node[circ]{ }
+		(2,2)node[circ]{ }
+		(2,0)node[circ]{ };
+	\end{circuitikz}
+	\newline
+\end{figure}
+Pomocí metody uzlového napětí:
+\newline
+
+	$A: \Uu{A}(\Gg{1}+\Gg{2}+\Gg{3}) + \Uu{B}(-\Gg{5}) = -\I{3} \\$
+	$B: \Uu{A}(-\Gg{2}) + \Uu{B}(\Gg{2}+\Gg{4}) + \Uu{C}(-\Gg{4}) = -\I{2} \\$
+	$C: \Uu{B}(-\Gg{4}) + \Uu{C}(\Gg{4}+\Gg{5}) = \I{2} - \I{1}$
+\begin{figure}[H]
+    \centering
+	\begin{align*}
+	   \begin{pmatrix}
+		G_{1}+G_{2}+G_{3}&-G_{2}&0\\
+		-G_{2}&G_{2}+G_{4}&-G_{4}\\
+		0&-G_{4}&G_{4}+G_{5}
+	   \end{pmatrix}
+            \cdot 
+	\begin{pmatrix}
+		U_{A}\\
+		U_{B}\\
+		U_{C}
+	\end{pmatrix}
+            =
+	\begin{pmatrix}
+		I_{3}\\
+		-I_{2}\\
+		I_{2}-I_{1}
+	\end{pmatrix}
+    \end{align*}
+\newline
+
+\subsection{Dosazení}
+    \begin{align*}
+	\begin{pmatrix}
+		0,0547&-0.0204&0\\
+		-0.0204&0.0460&-0.0256\\
+		0&-0.0256&0,0568
+	\end{pmatrix}
+            \cdot
+	\begin{pmatrix}
+		U_{A}\\
+		U_{B}\\
+		U_{C}
+	\end{pmatrix}
+            =	
+        \begin{pmatrix}
+		2.2642\\
+		-0.7000 \\
+		-0.2000
+	\end{pmatrix}
+    \end{align*}
+    
+    \begin{align*}
+        \Uu{B} &= \SI{2,0543}{\volt} \\
+        \Uu{C} &= \SI{-2.5896}{\volt}
+    \end{align*}
+    \begin{align*}
+        \Uu{R4} &= \Uu{B} - \Uu{C} = 2,0543 - (-2.5896) = \SI{4.6439}{\volt}\\
+         \I{R4} &= \frac{\Uu{R4}}{\R{4}} = \frac{4.6439}{39} = \SI{0.1191}{\ampere}
+    \end{align*}
+\end{figure}
