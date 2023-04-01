@@ -1,0 +1,161 @@
+\section{Příklad 2}
+\druhyZadani{E}
+
+    \subsection{Výpočet I$_{i}$}
+    Sestavime rovnici použitím 2 Kirchhoffova zákona pro výpočet celkového proudu:
+    \newline
+    -I${\cdot \R{1}}$ - I${\cdot \R{3}}$ - I${\cdot \R{4}}$ - I${\cdot \R{2}}$ + U = 0 
+    \newline
+    
+    I$_{i}$ = $\dfrac{U}{\R{1} + \R{3} + \R{4} + \R{2}}$
+    \newline
+\begin{figure}[H]
+    \centering
+    \begin{circuitikz}
+		\draw(0,0)to[dcvsource,v^<=U](0,4)
+		(0,4)to[R,l^=\R{1}](2,4)
+		(2,4)to[R,l^=\R{3}](2,2)
+		(2,0)node[circ]{ }
+		(2,2)node[circ]{ }
+        (2,2)to[R,l^=\R{4}](2,0)
+		(0,0)to[R,l^=\R{2}](2,0)
+		(3.5,0)node[ocirc]{ }
+		(3.5,2)node[ocirc]{ }
+		(2,2)--(3.5,2)
+		(2,0)--(3.5,0)
+		(1,2)node[circulator,rotate=180]{ }
+		{[anchor=east](1.8,2.5)node{\I{ }}}
+		{[anchor=south](3.5,2)node{A}(3.8,0)node{B}};
+        \draw[dashed](3.5,2)--(3.5,0);
+	\end{circuitikz}   
+    \end{figure} 
+\subsection{Výpočet U$_{i}$}
+
+     U$_{i}$ dosadíme namísto R$_{4}$ aby bylo možné počítat podmíněný zdroj napětí a pak používáme 2 Kirhoffův zákon: 
+     
+    -U$_{i}$ + $I\cdot \R{4} = 0\\$
+    U$_{i}$ = I$\cdot \R{4}\\$
+\begin{figure}  
+    \centering
+    \begin{circuitikz}
+		\draw(0,0)to[dcvsource,v^<=U](0,4)
+		(0,4)to[R,l^=\R{1}](2,4)
+		(2,4)to[R,l^=\R{3}](2,2)
+		(2,0)node[circ]{ }
+		(2,2)node[circ]{ }
+            (2,2) to[R,l^=\R{4}] (2,0)
+		(3.5,0)node[ocirc]{ }
+		(3.5,2)node[ocirc]{ }
+		(2,2)--(3.5,2)
+		(2,0)--(3.5,0)
+		(0,0)to[R,,l^=\R{2}] (2,0)
+		(2.7,1.5) node[circulator, rotate=150,scale=0.4]{ }
+            {[anchor=east](1.8,2.5)node{\I{ }}}
+		{[anchor=south](3.5,2)node{A}(3.8,0)node{B}}
+		(1,2)node[circulator,rotate=180]{ };
+	    \draw[dashed](3.5,2)to[dcvsource,v^>=U{i}](3.5,0);
+	\end{circuitikz}    
+    \end{figure}
+
+\subsection{Výpočet R$_{i}$}
+
+    Odpojíme rozhodný odpor, zkratujeme napětový zdroj a označíme si uzly jako uzel A a uzel B namísto uzlů na které byl odpor R$_{5}$ napojen 
+
+    Zjistime odpor R$_{i}$:
+\begin{figure}
+    \centering
+    \setlength{\parindent}{1cm}
+    \begin{circuitikz}
+		\draw
+		(0,0)--
+		(0,4)to[R,l^=\R{1}](2,4)
+		(2,4)to[R,l^=\R{3}](2,2)
+		(2,0)node[circ]{ }
+		(2,2)node[circ]{ }
+            (2,2)to[R,l^=\R{4}](2,0)
+		(0,0)to[R,l^=\R{2}](2,0)
+		(3.5,0)node[ocirc]{ }
+		(3.5,2) node[ocirc]{ }
+		(2,2)--(3.5,2)
+		(2,0)--(3.5,0)
+		{[anchor=south](3.5,2)node{A}(3.8,0)node{B}};
+	\end{circuitikz}
+    \end{figure}
+
+
+    Výpočet R$_{1,2,3}$:
+\begin{figure}
+    Vypočítame součet všechne rezistoru sériové :
+
+    R$_{1,2,3}$ = $\R{1} + \R{2} + \R{3}\\$
+    \newline 
+
+    \centering
+        \begin{circuitikz}
+		\draw(0,0)--(0,4)--
+		(2,4)to[R,l^=\R{123}](2,2)
+            (2,2)to[R,l^=\R{4}](2,0)--(0,0)
+		(2,2)--(3.5,2) 
+		(2,0)--(3.5,0)
+            (3.5,0)node[ocirc]{ }
+		(3.5,2)node[ocirc]{ }
+            (2,0)node[circ]{ }
+		(2,2)node[circ]{ }
+		{[anchor=south](3.5,2) node{A}(3.8,0)node{B}};
+	\end{circuitikz}
+\end{figure}
+
+\begin{figure}
+    Výpočet R$_{1,2,3,4}:\\$
+
+    Spočítáme paralelne zapojene rezistory:
+    \newline
+
+    R$_{1,2,3,4}$ = $\dfrac{\R{1,2,3}\cdot \R{4}}{\R{1,2,3} + \R{4}}$
+    \newline
+
+    R$_{i}$ = R$_{1,2,3,4}$
+
+    \centering
+    \begin{circuitikz}
+		\draw(0,0)to[R,l^=\R{1234}](0,2)--(2,2)
+            (0,0)--(2,0)
+            (2,2)node[ocirc]{ }
+		(2,0)node[ocirc]{ }
+		{[anchor=south](2,2)node{A}(2,0)node{B}};
+	\end{circuitikz}
+    \end{figure}
+
+\begin{figure}
+    \subsection{Výpočet I$_{R5}$ a U$_{5}$}
+
+    Použitím náhradneho obvodu počítame I$_{R5}$ a U$_{R5}$ použitím Ohmova zákona:
+    \newline
+    
+    I$_{R5}$ = $\dfrac{U_{i}}{\R{i}+\R{5}}\\$
+    \newline
+    U$_{5}$ = I$_{5} \cdot \R{5}$
+    \newline
+
+    \centering
+    \begin{circuitikz}
+		\draw(0,0)to[dcvsource,v^<=U{i}](0,2)
+		(0,2)to[R,l^=\R{i}](2,2)
+            (2,2)to[R,l^=\R{5}](2,0)--(0,0);
+	\end{circuitikz}
+    \end{figure}
+
+
+\begin{figure}
+    \centering
+    \subsection{Dosazení}
+    \begin{align*}
+        &\I{i} = \dfrac{U}{\R{1} + \R{2} + \R{3} + \R{4}} = \dfrac{250}{150+335+625+245} = \dfrac{250}{1355} = \SI{0.1845}{\ampere} \\
+        &\Uu{i} = \I{i} \cdot \R{4} = 0.1845 \cdot 245 = \SI{45.2025}{\volt} \\
+        &\R{1,2,3} = \R{1} + \R{2} + \R{3} = 150 + 335 + 625 = \SI{1110}{\ohm} \\
+        &\R{1,2,3,4} = \dfrac{R{1,2,3} \cdot \R{4}}{\R{1,2,3} + \R{4}} = \dfrac{1110 \cdot 245}{1110 + 245} = \SI{200.7011}{\ohm} \\   
+        &\R{i} = \R{1234} = \SI{200.7011}{\ohm}\\
+        &\I{R5} = \dfrac{U{i}}{\R{i}+\R{5}} =\dfrac{45.2025}{200.7011 + 600} = \SI{0.0565}{\ampere} \\
+        &\Uu{R5} = \I{R5} \cdot \R{5} = 0.0565 \cdot 600 = \SI {33.8725}{\volt}
+    \end{align*}
+\end{figure}
