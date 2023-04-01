@@ -1,0 +1,119 @@
+\section{Příklad 4}
+\ctvrtyZadani{A}
+
+\subsection{Metoda smyčkových proudu}
+Definujeme smyčkové proudy v obvodu a vytvoříme 3 rovnici (máme 3 smyčky):
+\begin{figure}[H]
+    \centering
+	\begin{circuitikz}
+		\ctikzset{cute inductors} 
+		      \draw(0,4)to[sV=\Uu{1}](6,4)
+		      (0,4)to[R,l=\R{1}](0,2)
+		      (6,4)--(6,2)--(6,0)
+                (6,2)node[circ]{ }
+                (6,0)to[sV=\Uu{2}](4,0)
+		      (4,2)node[circ]{ }
+		      (0,2)to[L,l=\Ll{1}](2,2)
+                (2,2)to[R,l=\R{2}](4,2)
+		      (4,0)node[circ]{ }
+		      (4,2)to[L,l=\Ll{2}](6,2)
+		      (4,2)to[C=\Cc{1}](4,0)
+		      (4,0)to[C=\Cc{2}](0,0)		 
+		      (0,2)--(0,0)
+		      (3,3)node[circulator,scale=0.6]{ }
+		      (2,1)node[circulator,scale=0.6]{ }
+		      (5.2,1.1)node[circulator,scale=0.6]{ }
+		      {[anchor=south west](3.2,3)node{\I{A}}(2,1.1) node{\I{C}}(5.4,1.1)node{\I{B}}};
+	\end{circuitikz}
+\end{figure}
+Použitím Ohmova zákona (je-li napětí na koncích vodiče stálé, je proud nepřímo úměrný odporu vodiče) a impedance ne lineárních součastek počítáme smyčkové proudy použitím matice:
+
+$\omega = 2\pi f \\$
+$\Z{C} = \frac{-j}{\omega C}\\$
+$\Z{L} =  j\omega L \\$
+\pagebreak
+
+$\I{A}:\Uu{1} + \Uu{L2} + \Uu{R2} + \Uu{L1} + \Uu{R1} = 0\\$
+$\I{B}:-\Uu{L2} + \Uu{2} + \Uu{C1} = 0 \\$
+$\I{C}:-\Uu{L1} - \Uu{R2} - \Uu{C1} + \Uu{C2} = 0 \\$
+
+$\I{A}:-\I{B}(\Z{L2}) - \I{C}(\Z{R2} + \Z{L1}) = 0\\ $
+$\I{B}:-\I{A}(\Z{L2}) + \I{B}(\Z{L2}+\Z{C1}) + \Uu{2} -\I{C}(\Z{C1}) = 0 \\$
+$\I{C}:-\I{A}(\Z{R2} + \Z{L1}  )- \I{B}(\Z{C1}) + \I{C}(\Z{L1} +\Z{R2} + \Z{C1} + \Z{C2} ) = 0\\$
+
+\begin{align*}
+	\begin{pmatrix}
+	   Z_{L2}+Z_{R2}+ Z_{L1}+Z_{R1} &-Z_{L2}&-Z_{R2}-Z_{L1}\\
+          -Z_{L2}&Z_{L2}+Z_{C1}&-Z_{C1}\\
+          -Z_{R2}-Z_{L1}&-Z_{C1}&Z_{L1}+Z_{R2}+ Z_{C1}+Z_{C2}\\
+	\end{pmatrix}
+	\cdot
+	\begin{pmatrix}
+		I_{A}\\
+            I_{B}\\ 
+            I_{C}\\
+	\end{pmatrix}
+	   =
+	\begin{pmatrix}
+	   -U_{1}\\ 
+          -U_{2}\\ 
+          0
+	\end{pmatrix}
+\end{align*}
+
+\subsection{Výpočet napětí U$_{C2}$}
+Napětí vypočítáme použitím Ohmova zákona a také použijeme modul komplexního čísla (kvůli imaginární části)$:\\$
+
+	$\Uu{C2} = \I{C2}\cdot\Z{C2} = \I{C} \cdot (\frac{-j}{\omega C_2} ) \\$
+ 
+	$|\Uu{L2}| = \sqrt{Re(\Uu{C2})^2 + Im(\Uu{C2})^2}\\$
+
+Fázový posun počítáme ako arktangens (kde x je reálná část imaginárního čísla a y je imaginární část imaginárního čísla)$:\\$
+
+	$\varphi_{L2}= arctan(\frac{Im(\Uu{C2})}{Re(\Uu{C2})}) \times \frac{\pi}{180}\\$
+
+\subsection{Řešení}
+	
+$\omega = 2\pi f \\$
+
+$\Z{C1} = \frac{-j}{\omega \Cc{1}}\\$
+
+$\Z{C2} = \frac{-j}{\omega \Cc{2}}\\$
+
+$\Z{L1} =  j\omega \Ll{1} \\$
+
+$\Z{L2} =  j\omega \Ll{2}\\$
+
+\begin{align*}
+    \begin{pmatrix}
+        26 + 96.7611j&-22.6195j &-12 -52.7788j\\
+        -439823j&32.6141j&11.3682j\\ 
+        -14 - 52.7788j&11.3682j&14 + 19,7569j
+    \end{pmatrix}
+    \begin{pmatrix}
+        I_{A}\\
+        I_{B}\\
+        I_{C}\\
+        \end{pmatrix}
+          =
+        \begin{pmatrix}
+        -3\\
+        -5\\
+        0\\
+        \end{pmatrix}
+\end{align*}
+	
+$\I{A} = (-0.1025 - 0.1024j)\ \si{\ampere} \\$
+
+$\I{B} = (-0.1185 + 0.1245j)\ \si{\ampere} \\$
+
+$\I{C} = (-0.0568 - 0.3126j)\ \si{\ampere}\\$
+
+	
+$\I{C2} = \I{C}\\$
+
+$\Uu{C2} = \I{C2} \cdot \Z{C2} = (-0.0568 - 0.3126j) \cdot (-21.6537j) = (-6.7697 + 1.2291j)\ \si{\volt} \\$
+
+$\varphi_{C2}= \arctan(\frac{Im(\Uu{C2})}{Re(\Uu{C2})}) \cdot \frac{\pi}{180}  = (\arctan\frac{1.2291}{-6.7697} + \pi)\cdot\frac{180}{\pi} = 169.7093^\circ \\$
+
+$|\Uu{C2}| = \sqrt{Re(\Uu{C2})^2 + Im(\Uu{C2})^2} = \sqrt{(-6.7697)^2 + 1.2291} = \SI{6.8804}{\volt}$
